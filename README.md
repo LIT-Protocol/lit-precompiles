@@ -1,27 +1,6 @@
-![Image](./header.png)
+# Lit Precompiles
 
-# Stylus Hello World
-
-Project starter template for writing Arbitrum Stylus programs in Rust using the [stylus-sdk](https://github.com/OffchainLabs/stylus-sdk-rs). It includes a Rust implementation of a basic counter Ethereum smart contract:
-
-```js
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
-
-contract Counter {
-    uint256 public number;
-
-    function setNumber(uint256 newNumber) public {
-        number = newNumber;
-    }
-
-    function increment() public {
-        number++;
-    }
-}
-```
-
-To set up more minimal example that still uses the Stylus SDK, use `cargo stylus new --minimal <YOUR_PROJECT_NAME>` under [OffchainLabs/cargo-stylus](https://github.com/OffchainLabs/cargo-stylus).
+Precompiles used by the Lit Protocol network are implemented as Arbitrum Stylus contracts.
 
 ## Quick Start 
 
@@ -43,15 +22,13 @@ You should now have it available as a Cargo subcommand:
 cargo stylus --help
 ```
 
-Then, clone the template:
+### Checking Stylus Contracts
 
-```
-git clone https://github.com/OffchainLabs/stylus-hello-world && cd stylus-hello-world
-```
+From each of the Stylus project directories in `src`, run `cargo stylus check`.
 
-### Testnet Information
+### Arbitrum Testnet Information
 
-All testnet information, including faucets and RPC endpoints can be found [here](https://docs.arbitrum.io/stylus/reference/testnet-information).
+All Arbitrum testnet information, including faucets and RPC endpoints can be found [here](https://docs.arbitrum.io/stylus/reference/testnet-information).
 
 ### ABI Export
 
