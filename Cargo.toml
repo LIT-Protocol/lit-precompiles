@@ -9,7 +9,7 @@ keywords = ["arbitrum", "ethereum", "stylus", "alloy"]
 alloy-primitives = "0.7.5"
 alloy-sol-types = "0.7.5"
 hex = "0.4.3"
-hd-keys-curves-wasm = { path = "../hd-keys-curves-wasm", features = ["bls", "curve25519", "decaf377", "ed448", "jubjub", "k256", "p256", "p384"] }
+hd-keys-curves-wasm = { git = "https://github.com/LIT-Protocol/hd-keys-curves-wasm.git", features = ["bls", "curve25519", "decaf377", "ed448", "jubjub", "k256", "p256", "p384"] }
 p256 = { version = "0.13", default-features = false, features = ["arithmetic"] }
 k256 = { version = "0.13", default-features = false, features = ["arithmetic"] }
 mini-alloc = "0.4.2"
