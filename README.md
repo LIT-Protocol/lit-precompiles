@@ -4,6 +4,14 @@ Precompiles used by the Lit Protocol network are implemented as Arbitrum Stylus 
 
 Build using `build.sh`, and then you can deploy using `cargo stylus deploy`. You may have to run `cargo clean` first, to remove any old builds.
 
+## Repo Structure
+
+- `core`: Core precompiles for both P256 and K256.
+- `p256`: P256 precompiles.
+- `k256`: K256 precompiles.
+
+Note: this is not a proper Rust workspace, but it is a monorepo. You must add each crate to your IDE workspace manually to have rust-analyzer work. You must CD into each crate to build or deploy it.
+
 ## Quick Start
 
 Install [Rust](https://www.rust-lang.org/tools/install), and then install the Stylus CLI tool with Cargo
