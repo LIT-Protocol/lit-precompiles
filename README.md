@@ -1,29 +1,18 @@
-![Image](./header.png)
+# Lit Precompiles
 
-# Stylus Hello World
+Precompiles used by the Lit Protocol network are implemented as Arbitrum Stylus contracts.
 
-Project starter template for writing Arbitrum Stylus programs in Rust using the [stylus-sdk](https://github.com/OffchainLabs/stylus-sdk-rs). It includes a Rust implementation of a basic counter Ethereum smart contract:
+Build using `build.sh`, and then you can deploy using `cargo stylus deploy`. You may have to run `cargo clean` first, to remove any old builds.
 
-```js
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+## Repo Structure
 
-contract Counter {
-    uint256 public number;
+- `core`: Core precompiles for both P256 and K256.
+- `p256`: P256 precompiles.
+- `k256`: K256 precompiles.
 
-    function setNumber(uint256 newNumber) public {
-        number = newNumber;
-    }
+Note: this is not a proper Rust workspace, but it is a monorepo. You must add each crate to your IDE workspace manually to have rust-analyzer work. You must CD into each crate to build or deploy it.
 
-    function increment() public {
-        number++;
-    }
-}
-```
-
-To set up more minimal example that still uses the Stylus SDK, use `cargo stylus new --minimal <YOUR_PROJECT_NAME>` under [OffchainLabs/cargo-stylus](https://github.com/OffchainLabs/cargo-stylus).
-
-## Quick Start 
+## Quick Start
 
 Install [Rust](https://www.rust-lang.org/tools/install), and then install the Stylus CLI tool with Cargo
 
@@ -43,15 +32,13 @@ You should now have it available as a Cargo subcommand:
 cargo stylus --help
 ```
 
-Then, clone the template:
+### Checking Stylus Contracts
 
-```
-git clone https://github.com/OffchainLabs/stylus-hello-world && cd stylus-hello-world
-```
+From each of the Stylus project directories in `src`, run `cargo stylus check`.
 
-### Testnet Information
+### Arbitrum Testnet Information
 
-All testnet information, including faucets and RPC endpoints can be found [here](https://docs.arbitrum.io/stylus/reference/testnet-information).
+All Arbitrum testnet information, including faucets and RPC endpoints can be found [here](https://docs.arbitrum.io/stylus/reference/testnet-information).
 
 ### ABI Export
 
@@ -117,7 +104,6 @@ Estimated gas for deployment: 1874876
 ```
 
 The above only estimates gas for the deployment tx by default. To estimate gas for activation, first deploy your program using `--mode=deploy-only`, and then run `cargo stylus deploy` with the `--estimate-gas-only` flag, `--mode=activate-only`, and specify `--activate-program-address`.
-
 
 Here's how to deploy:
 

@@ -1,0 +1,19 @@
+[package]
+name = "precompiles-core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+stylus-sdk = "0.6.0"
+hex = { version = "0.4.3", default-features = false }
+hd-keys-curves-wasm = { git = "https://github.com/LIT-Protocol/hd-keys-curves-wasm.git", optional = true }
+p256 = { version = "0.13", default-features = false, features = ["arithmetic", "hash2curve"], optional = true }
+k256 = { version = "0.13", default-features = false, features = ["arithmetic", "hash2curve"], optional = true }
+mini-alloc = "0.4.2"
+
+
+[features]
+default = []
+
+p256 = ["dep:p256", "hd-keys-curves-wasm/p256"]
+k256 = ["dep:k256", "hd-keys-curves-wasm/k256"]
