@@ -367,7 +367,7 @@ fn parse_bls(id: &[u8], cxt: &[u8], root_keys_len: usize, data: &[u8]) -> Result
                 &buffer[..G1Projective::COMPRESSED_BYTES],
             )
             .map_err(|_| Vec::new())?;
-            Option::<G1Projective>::from(G1Projective::from_compressed(data))
+            Option::<G1Projective>::from(G1Projective::from_compressed(&data))
                 .ok_or(Vec::new())
                 .map(|pt| (pt, &buffer[G1Projective::COMPRESSED_BYTES..]))
         },
@@ -571,7 +571,9 @@ fn parse_ed448(
     data: &[u8],
 ) -> Result<Vec<u8>, Vec<u8>> {
     use hd_keys_curves_wasm::{
-        ed448_goldilocks_plus::EdwardsPoint, elliptic_curve::group::GroupEncoding,
+        ed448_goldilocks_plus::{
+            EdwardsPoint, ScalarBytes
+        }, elliptic_curve::group::GroupEncoding,
     };
 
     parse_point(
@@ -588,13 +590,13 @@ fn parse_ed448(
                 );
             }
 
-            let mut repr = <EdwardsPoint as GroupEncoding>::Repr::default();
-            repr.as_mut().copy_from_slice(&buffer[..57]);
+            let mut repr: ScalarBytes  = <EdwardsPoint as GroupEncoding>::Repr::default();
+            <ScalarBytes as AsMut<[u8]>>::as_mut(&mut repr).copy_from_slice(&buffer[..57]);
             Option::<EdwardsPoint>::from(EdwardsPoint::from_bytes(&repr))
                 .ok_or(Vec::new())
                 .map(|pt| (pt, &buffer[57..]))
         },
-        |point| point.to_bytes().as_ref().to_vec(),
+        |point| <ScalarBytes as AsRef<[u8]>>::as_ref(&point.to_bytes()).as_ref().to_vec(),
     )
 }
 #[cfg(not(feature = "ed448"))]

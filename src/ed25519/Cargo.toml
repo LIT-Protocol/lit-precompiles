@@ -1,0 +1,35 @@
+[package]
+name = "hd-kdf-ed25519"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+keywords = ["arbitrum", "ethereum", "stylus", "alloy"]
+
+[dependencies]
+alloy-primitives = "=0.7.6"
+alloy-sol-types = "=0.7.6"   
+stylus-sdk = "0.6.0"
+precompiles-core = { path = "../core", features = ["ed25519"] }
+
+[dev-dependencies]
+tokio = { version = "1.38.0", features = ["full"] }
+ethers = "2.0"
+eyre = "0.6.12"
+
+[features]
+export-abi = ["stylus-sdk/export-abi"]
+debug = ["stylus-sdk/debug"]
+
+[lib]
+crate-type = ["lib", "cdylib"]
+
+[profile.release]
+codegen-units = 1        # prefer efficiency to compile time
+panic = "abort"          # use simple panics
+opt-level = "z"          # optimize for size ("s" may also work)
+strip = true             # remove debug info
+lto = true               # link time optimization
+debug = false            # no debug data
+rpath = false            # no run-time search path
+debug-assertions = false # prune debug assertions
+incremental = false      # no incremental builds
